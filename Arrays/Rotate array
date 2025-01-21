@@ -1,0 +1,29 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/arrays-gfg-160/problem/rotate-array-by-n-elements-1587115621
+
+class Solution {
+  public:
+    void rev(vector<int>& arr , int left , int right)
+    {
+        while(left<=right)
+        {
+            swap(arr[left] ,arr[right]);
+            left++;
+            right--;
+        }
+    }
+    // Function to rotate an array by d elements in counter-clockwise direction.
+    void rotateArr(vector<int>& arr, int d) {
+        // code here
+        int n = arr.size();
+        d%=n;
+        rev(arr,0,d-1);
+        rev(arr,d,n-1);
+        rev(arr,0,n-1);
+    }
+};
+
+
+time complexity : O(n)
+space complexity : O(1)
