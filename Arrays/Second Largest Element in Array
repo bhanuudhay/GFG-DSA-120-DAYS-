@@ -1,3 +1,7 @@
+Problem link 
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/arrays-gfg-160/problem/second-largest3735
+
 class Solution {
   public:
     int getSecondLargest(vector<int> &arr) {
