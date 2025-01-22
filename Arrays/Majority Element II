@@ -63,3 +63,6 @@ class Solution {
         return temp;
     }
 };
+
+Time complexity: O(n)
+Space complexity: O(1)
