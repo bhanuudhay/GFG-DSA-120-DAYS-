@@ -1,0 +1,22 @@
+problem linl
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/arrays-gfg-160/problem/buy-stock-2
+
+class Solution {
+  public:
+    int maximumProfit(vector<int> &prices) {
+        // code here
+        int n = prices.size();
+        int res = 0;
+        int mini = prices[0];
+        for(int i =1 ; i<n;i++)
+        {
+            mini = min(mini ,prices[i]);
+            res = max(res,prices[i]-mini);
+        }
+        return res;
+    }
+};
+
+Time Complexity: O(n)
+Space Complexity: O(1)
