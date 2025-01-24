@@ -1,0 +1,23 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/arrays-gfg-160/problem/kadanes-algorithm-1587115620
+
+class Solution {
+  public:
+    // Function to find the sum of contiguous subarray with maximum sum.
+    int maxSubarraySum(vector<int> &arr) {
+        // code here...
+        int n = arr.size();
+        int res = arr[0];
+        int maxi = arr[0];
+        for(int i = 1;i<n;i++)
+        {
+            maxi = max(arr[i]+maxi ,arr[i]);
+            res = max(res,maxi);
+        }
+        return res;
+    }
+};
+
+Time Complexity: O(n)
+Space Complexity: O(1)
