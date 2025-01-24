@@ -1,0 +1,28 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/arrays-gfg-160/problem/maximum-product-subarray3604
+
+class Solution {
+  public:
+    // Function to find maximum product subarray
+    int maxProduct(vector<int> &arr) {
+        // Your Code Here
+        int n = arr.size();
+        int res = arr[0];
+        int mini = arr[0];
+        int maxi = arr[0];
+        
+        for(int i =1;i<n;i++)
+        {
+            int temp = max({arr[i],arr[i]*maxi,arr[i]*mini});
+            mini = min({arr[i],arr[i]*maxi,arr[i]*mini});
+            maxi = temp;
+            res = max(res,maxi);
+        }
+        return res;
+        
+    }
+};
+
+Time Complexity: O(n)
+Space Complexity: O(1)
