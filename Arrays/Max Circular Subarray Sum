@@ -1,0 +1,47 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/arrays-gfg-160/problem/max-circular-subarray-sum-1587115620
+
+class Solution {
+  public:
+    // arr: input array
+    // Function to find maximum circular subarray sum.
+    int kadaneMax(vector<int> arr , int n)
+    {
+        int res= arr[0];
+        int maxi = arr[0];
+        for(int i =1;i<n;i++)
+        {
+            maxi = max(arr[i]+maxi , arr[i]);
+            res = max(res,maxi);
+        }
+        return res;
+    }
+    int kadaneMin(vector<int> arr , int n)
+    {
+        int res= arr[0];
+        int mini = arr[0];
+        for(int i =1;i<n;i++)
+        {
+            mini = min(arr[i]+mini , arr[i]);
+            res = min(res,mini);
+        }
+        return res;
+    }
+    int circularSubarraySum(vector<int> &arr) {
+        int  n =arr.size();
+        int sum  = accumulate(arr.begin() ,arr.end() ,0);
+        int maxSum = kadaneMax(arr,n);
+        int minSum = kadaneMin(arr,n);
+        int circSum = sum-minSum;
+        
+        if(maxSum > 0)
+        {
+            return max(circSum,maxSum);
+        }
+        return maxSum;
+    }
+};
+
+Time Complexity: O(n)
+Space Complexity: O(1)
