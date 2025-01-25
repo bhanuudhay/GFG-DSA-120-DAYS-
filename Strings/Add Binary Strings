@@ -1,0 +1,37 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/string-gfg-160/problem/add-binary-strings3805
+
+class Solution {
+  public:
+    string addBinary(string& s1, string& s2) {
+        // your code here
+        string res ="";
+        int i =s1.length() -1;
+        int j =s2.length()-1;
+        
+        int carry =0 ;
+        while(i >= 0  || j >= 0 || carry )
+        {
+            int bit1 = i>=0 ? s1[i]-'0':0;
+            int bit2 = j>=0 ? s2[j]-'0':0;
+            
+            int sum =bit1+bit2+carry;
+            carry =sum/2;
+            
+            res+=(sum%2)+'0';
+            i--;
+            j--;
+        }
+        reverse(res.begin() ,res.end());
+        int currIndx =0;
+        while(currIndx < res.length() && res[currIndx]== '0')
+        {
+            currIndx++;
+        }
+        return currIndx == res.length() ? 0 : res.substr(currIndx);
+    }
+};
+
+Time Complexity: O(n + m)
+Space Complexity: O(n + m)
