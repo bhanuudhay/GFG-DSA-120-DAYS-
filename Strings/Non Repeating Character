@@ -1,0 +1,29 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/string-gfg-160/problem/non-repeating-character-1587115620
+
+
+class Solution {
+  public:
+    // Function to find the first non-repeating character in a string.
+    char nonRepeatingChar(string &s) {
+        // Your code here
+        unordered_map<int,int> mm;
+        for(int x  :s)
+        {
+            mm[x]+=1;
+        }
+        for(int y : s)
+        {
+            if(mm[y] == 1)
+            {
+                return y;
+                break;
+            }
+        }
+        return '$';
+    }
+};
+
+Time complexity: O(n)
+Space complexity: O(k) where k is number of unique characters in string 
