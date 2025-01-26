@@ -1,0 +1,32 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/string-gfg-160/problem/anagram-1587115620
+
+class Solution {
+  public:
+    // Function is to check whether two strings are anagram of each other or not.
+    bool areAnagrams(string& s1, string& s2) {
+        // Your code here
+        unordered_map<int,int> mm;
+        for(int x :s1)
+        {
+            mm[x] +=1;
+        }
+        for(int y : s2)
+        
+        {
+            mm[y]-=1;
+        }
+        for(auto y : mm)
+        {
+            if(y.second  != 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+Time complexity: O(n + m)
+Space complexity: O(k)
