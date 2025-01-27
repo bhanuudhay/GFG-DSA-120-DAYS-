@@ -1,0 +1,49 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/string-gfg-160/problem/minimum-characters-to-be-added-at-front-to-make-string-palindrome
+
+class Solution {
+  public:
+  vector<int> calcLps(string &lap)
+  {
+      int M = lap.size();
+      vector<int> lps(M);
+      int  i=1;
+      int length =0;
+      lps[0] = 0;
+      while(i <M)
+      {
+          if(lap[i]  == lap[length])
+          {
+              length++;
+              lps[i] = length;
+              i++;
+          }
+          else if(i <M && lap[i]  != lap[length])
+          {
+              if(length!=0)
+              {
+                  length = lps[length-1];
+              }
+              else
+              {
+                  lps[i] = 0;
+                  i++;
+              }
+          }
+      }
+      return lps;
+  }
+    int minChar(string& s) {
+        // Write your code here
+        int  n = s.length();
+        string rev=s;
+        reverse(rev.begin() , rev.end());
+         s = s+"$"+rev;
+        vector<int> lps = calcLps(s);
+        return n-lps.back();
+    }
+};
+
+Time Complexity: O(n)
+Space Complexity: O(n)
