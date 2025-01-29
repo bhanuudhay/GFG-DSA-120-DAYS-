@@ -1,0 +1,69 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/sorting-gfg-160/problem/inversion-of-array-1587115620
+
+class Solution {
+  public:
+    // Function to count inversions in the array
+    int mergee(vector<int> &arr , int l, int mid , int r)
+    {
+        int len1 =  mid-l+1;
+        int len2  = r -mid;
+        
+        vector<int> arr1(len1);
+        vector<int> arr2(len2);
+        
+        for(int i =0 ; i < len1 ; i++)
+        {
+            arr1[i] = arr[l+i];
+        }
+        for(int  j =0 ; j < len2;j++)
+        {
+            arr2[j] = arr[mid+1+j];
+        } 
+        
+        int k = l , i =0 , j = 0;
+        int invv = 0;
+        while(i<len1 && j < len2)
+        {
+            if(arr1[i] <=arr2[j])
+            {
+                arr[k++] = arr1[i++];
+            }
+            else
+            {
+                invv += len1 -i;
+                arr[k++] = arr2[j++];
+            }
+        }
+        while(i<len1)
+        {
+            arr[k++] = arr1[i++];
+        }
+        while(j<len2)
+        {
+            arr[k++] = arr2[j++];
+        }
+        return invv;
+    }
+    int merge(vector<int> &arr , int l , int r)
+    {
+        int inv = 0;
+        if(l<r)
+        {
+            int mid = (l+r)/2;
+            inv+= merge(arr,l,mid);
+            inv+=merge(arr,mid+1,r);
+            inv+= mergee(arr,l,mid,r);
+        }
+        return inv;
+    }
+    int inversionCount(vector<int> &arr) {
+        // Your Code Here
+        int  n = arr.size();
+        return merge(arr,0,n-1);
+    }
+};
+
+Time Complexity: O(n log n)
+Space Complexity: O(n)
