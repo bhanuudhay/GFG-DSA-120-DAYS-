@@ -1,0 +1,21 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/sorting-gfg-160/problem/merge-two-sorted-arrays-1587115620
+
+class Solution {
+  public:
+    void mergeArrays(vector<int>& a, vector<int>& b) {
+        // code here
+        int i = a.size() -1;
+        int j =0;
+        while(j < b.size() && i >=0 && a[i] > b[j])
+        {
+            swap(a[i--] , b[j++]);
+        }
+        sort(a.begin() , a.end());
+        sort(b.begin() , b.end());
+    }
+};
+
+Time Complexity: O(nlogn + mlogm)
+Auxiliary Space: O(1)
