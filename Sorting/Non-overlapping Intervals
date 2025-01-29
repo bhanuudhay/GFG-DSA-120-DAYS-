@@ -1,0 +1,47 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/sorting-gfg-160/problem/non-overlapping-intervals
+
+class Solution {
+  public:
+    int minRemoval(vector<vector<int>> &intervals) {
+        // code here
+        sort(intervals.begin() , intervals.end());
+        int   i =0 , j=1;
+        int count =0;
+        int n = intervals.size();
+        while(j<n)
+        {
+            vector<int> currInv = intervals[i];
+            vector<int> nextInv = intervals[j];
+            
+            int cs = currInv[0];
+            int ce  = currInv[1];
+            
+            
+            int ns = nextInv[0];
+            int ne = nextInv[1];
+            
+            if(ce <=ns)
+            {
+                i =j;
+                j++;
+            }
+            else if(ce <= ne)
+            {
+                j++;
+                count++;
+            }
+            else if(ce > ne)
+            {
+                i =j;
+                j++;
+                count++;
+            }
+        }
+        return count;
+    }
+};
+
+  Time Complexity: O(n log n)
+  Space Complexity: O(1)
