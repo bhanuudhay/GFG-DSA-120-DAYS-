@@ -1,0 +1,39 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/sorting-gfg-160/problem/find-h-index--165609
+
+// User function Template for C++
+class Solution {
+  public:
+    // Function to find hIndex
+    int hIndex(vector<int>& citations) {
+        // code here
+         sort(citations.begin() , citations.end());
+        int n = citations.size();
+        vector<int> ans(n+1,0);
+        for(int x :citations)
+        {
+            if(x > n)
+            {
+                ans[n]++;
+            }
+            else
+            {
+                ans[x]++;
+            }
+        }
+        int count  =0 ;
+        for(int i = n;i>=0;i--)
+        {
+            count+=ans[i];
+            if(count >=i)
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+};
+
+Time Complexity: O(n log n)
+Space Complexity: O(n) 
