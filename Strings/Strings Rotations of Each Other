@@ -1,0 +1,76 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/string-gfg-160/problem/check-if-strings-are-rotations-of-each-other-or-not-1587115620
+
+
+class Solution {
+  public:
+    // Function to check if two strings are rotations of each other or not.
+    void calcLps(string &pat , vector<int> &lps)
+    {
+        int M = pat.length();
+        int i  =1;
+        lps[0] =0;
+        int length =0;
+        while(i < M)
+        {
+            if(pat[i] == pat[length])
+            {
+                length++;
+                lps[i] = length;
+                i++;
+            }
+            else 
+            {
+                if(length != 0)
+                {
+                    length = lps[length-1];
+                }
+                else 
+                {
+                    lps[i] =0;
+                    i++;
+                }
+            }
+        }
+    }
+    bool areRotations(string &s1, string &s2) {
+        // Your code here
+        string txt = s1+s1;
+        string pat = s2;
+        int N = txt.length();
+        int M = pat.length();
+        vector<int>lps(M,0);
+        calcLps(pat,lps);
+        int i =0 , j=0;
+        while(i <N)
+        {
+            if(txt[i] == pat[j])
+            {
+                i++;
+                j++;
+            }
+            if(j == M)
+            {
+                return true;
+            }
+            else if(i <N && txt[i] != pat[j])
+            {
+                if(j != 0)
+                {
+                    j = lps[j-1];
+                }
+                else 
+                {
+                
+                    i++;
+                }
+            }
+        }
+        return false;
+        
+    }
+};
+
+Time Complexity : O(n)
+Space Complexity : O(n)
