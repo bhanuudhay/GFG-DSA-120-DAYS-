@@ -1,0 +1,41 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/sorting-gfg-160/problem/insert-interval-1666733333
+
+class Solution {
+  public:
+    vector<vector<int>> insertInterval(vector<vector<int>> &intervals,
+                                       vector<int> &newIntervals) {
+        // code here
+        vector<vector<int>>  result;
+        int n = intervals.size();
+        int i =0;
+        while(i<n)
+        {
+            if(intervals[i][1] <  newIntervals[0])
+            {
+                result.push_back(intervals[i]);
+            }
+            else if(intervals[i][0] >  newIntervals[1])
+            {
+                break;
+            }
+            else
+            {
+                newIntervals[0] = min(newIntervals[0] , intervals[i][0]);
+                newIntervals[1] = max(newIntervals[1] , intervals[i][1]);
+            }
+            i++;
+        }
+        result.push_back(newIntervals);
+        while(i <n)
+        {
+             result.push_back(intervals[i]);
+             i++;
+        }
+        return result;
+    }
+};
+
+Time Complexity: O(n)
+Space Complexity: O(n)
