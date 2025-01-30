@@ -1,0 +1,37 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/searching-gfg-160/problem/kth-missing-positive-number-in-a-sorted-array
+
+// User function template for C++
+
+class Solution {
+  public:
+    int kthMissing(vector<int> &arr, int k) {
+        // Your code goes here
+        int ans =1;
+        int  i =0;
+        int n = arr.size();
+        while(i < n && k>0)
+        {
+            if(arr[i] == ans)
+            {
+                i++;
+            }
+            else
+            {
+                k--;
+            }
+            ans++;
+        }
+        
+        while(k--)
+        {
+            ans++;
+        }
+        return ans -1;
+    }
+};
+
+
+Time complexity: O(n)
+Space complexity: O(1)
