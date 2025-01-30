@@ -1,0 +1,28 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/searching-gfg-160/problem/peak-element
+
+
+class Solution {
+  public:
+    int peakElement(vector<int> &arr) {
+        // Your code here
+        int l =0 , r = arr.size() -1;
+        while(l<r)
+        {
+            int mid= (l+r)/2;
+            if(arr[mid] < arr[mid+1])
+            {
+                l = mid + 1;
+            }
+            else
+            {
+                r = mid;
+            }
+        }
+        return r;
+    }
+};
+
+Time Complexity: O(log n)
+Space Complexity: O(1)
