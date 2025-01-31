@@ -1,0 +1,59 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/matrix-gfg-160/problem/spirally-traversing-a-matrix-1587115621
+
+class Solution {
+  public:
+    vector<int> spirallyTraverse(vector<vector<int> > &mat) {
+        // code here
+         vector<int> result;
+         int n = mat.size();
+         int m = mat[0].size();
+         int dir = 0;
+         int top = 0 , down = n-1 , left = 0 , right = m-1;
+         while(top<=down  && left <=right)
+         {
+             if(dir == 0)
+             {
+                 for(int i = left ; i<=right ; i++)
+                 {
+                    result.push_back(mat[top][i]);
+                 }
+                 top++;
+             }
+             if(dir == 1)
+             {
+                 for(int i = top ; i<=down ;i++)
+                 {
+                    result.push_back(mat[i][right]);
+                 }
+                 right--;
+             }
+             if(dir == 2)
+             {
+                for(int i = right ; i>=left ;i--)
+                {
+                    result.push_back(mat[down][i]);
+                }
+                down--;
+             }
+             if(dir ==3)
+             {
+                for(int i = down ; i>=top ;i--)
+                {
+                    result.push_back(mat[i][left]);
+                }
+                left++;
+             }
+             dir = dir+1;
+             if(dir == 4)
+             {
+                dir =0;
+             }
+         }
+        return result;
+    }
+};
+
+Time Complexity  : O(n*m)
+Space complexity : O(n*m)
