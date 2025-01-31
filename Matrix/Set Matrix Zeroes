@@ -1,0 +1,46 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/matrix-gfg-160/problem/set-matrix-zeroes
+
+class Solution {
+  public:
+    void setMatrixZeroes(vector<vector<int>> &mat) {
+        // code here
+        vector<int> a , b;
+        int n =  mat.size();
+        int m = mat[0].size();
+        
+        for(int i=0 ; i <n ; i++)
+        {
+            for(int j =0 ;j<m;j++)
+            {
+                if(mat[i][j] ==0)
+                {
+                    a.push_back(i);
+                    b.push_back(j);
+                }
+            }
+        }
+        
+        int index  = 0;
+        for(int i =0 ; i<a.size() ;i++)
+        {
+            index = a[i];
+            for(int  j =0 ;j < m;j++)
+            {
+                mat[index][j] =0;
+            }
+        }
+        for(int i =0 ; i <b.size() ;i++)
+        {
+            index = b[i];
+            for(int j=0;j<n;j++)
+            {
+                mat[j][index] = 0;
+            }
+        }
+    }
+};
+
+Time Complexity: O(n * m)
+Auxiliary Space: O(1)
