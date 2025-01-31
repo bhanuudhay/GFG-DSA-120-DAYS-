@@ -1,0 +1,36 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/matrix-gfg-160/problem/search-in-a-matrix-1587115621
+
+
+class Solution {
+  public:
+    // Function to search a given number in row-column sorted matrix.
+    bool searchMatrix(vector<vector<int>> &matrix, int x) {
+        // code here
+        int n = matrix.size();
+        int m  = matrix[0].size();
+        
+        int i =0 , j = m-1;
+        
+        while(i<n && m>=0)
+        {
+            if(matrix[i][j] > x)
+            {
+                j--;
+            }
+            else if(matrix[i][j] < x)
+            {
+                i++;
+            }
+            else 
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
+Time Complexity: O(log(n×m))
+Auxiliary Space: O(1)
