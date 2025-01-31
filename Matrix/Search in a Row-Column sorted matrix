@@ -1,0 +1,32 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/matrix-gfg-160/problem/search-in-a-matrix17201720
+
+class Solution {
+  public:
+    bool matSearch(vector<vector<int>> &mat, int x) {
+        // your code here
+        int n = mat.size();
+        int m = mat[0].size();
+        
+        int l = 0 , r =m-1;
+        while( l <n && r >=0)
+        {
+            if(mat[l][r] > x)
+            {
+                r--;
+            }
+            else if(mat[l][r] < x)
+            {
+                l++;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+};
+Time Complexity: O(n + m)
+Auxiliary Space: O(1)
