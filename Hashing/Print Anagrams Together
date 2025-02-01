@@ -1,0 +1,28 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/hashing-gfg-160/problem/print-anagrams-together
+
+// User function Template for C++
+
+class Solution {
+  public:
+    vector<vector<string>> anagrams(vector<string>& arr) {
+        // code here
+        unordered_map<string , vector<string>> mm;
+        for(int  i= 0 ; i <arr.size() ;i++)
+        {
+            string tem = arr[i];
+            sort(tem.begin() , tem.end());
+            mm[tem].push_back(arr[i]);
+        }
+        vector<vector<string>> ans;
+        for(auto x : mm)
+        {
+            ans.push_back(x.second);
+        }
+        return ans;
+    }
+};
+
+Time Complexity: O(n*mlogm)
+Auxiliary Space: O(n * m)
