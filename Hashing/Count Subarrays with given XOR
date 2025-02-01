@@ -1,0 +1,24 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/hashing-gfg-160/problem/count-subarray-with-given-xor
+
+class Solution {
+  public:
+    long subarrayXor(vector<int> &arr, int k) {
+        // code here
+        int xor_ = 0;
+        int ans = 0;
+        unordered_map<int,int> mm;
+        for(int x :arr)
+        {
+            xor_ ^=x;
+            if(xor_==k)ans++;
+            ans+= mm[xor_^k];
+            mm[xor_]++;
+        }
+        return ans;
+    }
+};
+
+Time Complexity: O(n)
+Auxiliary Space: O(n)
