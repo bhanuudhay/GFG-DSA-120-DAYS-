@@ -1,0 +1,45 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/hashing-gfg-160/problem/find-all-triplets-with-zero-sum
+
+// User function Template for C++
+class Solution {
+  public:
+    vector<vector<int>> findTriplets(vector<int> &arr) {
+        // Code here
+        set<vector<int>> st;
+        unordered_map<int ,int> mm;
+        int n = arr.size();
+        for(int i =0 ; i<n;i++)
+        {
+            for(int j =0 ; j<n;j++)
+            {
+                int a = arr[i] ;
+                int b = arr[j];
+                int c = -(a+b);
+                
+                if(mm.count(c) == 1 && i!=j &j!=mm[c] && mm[c]!=i)
+                {
+                    vector<int>  temp(3);
+                    temp[0]  = i;
+                    temp[1] = j;
+                    temp[2] = mm[c];
+                    sort(temp.begin() , temp.end());
+                    st.insert(temp);
+                }
+            }
+            mm[arr[i]] = i;
+        }
+        
+        vector<vector<int>> result;
+        for(auto x : st)
+        {
+            result.push_back(x);
+        }
+        
+        return result;
+    }
+};
+
+Time Complexity: O(n^2)
+Auxiliary Space: O(n^2)
