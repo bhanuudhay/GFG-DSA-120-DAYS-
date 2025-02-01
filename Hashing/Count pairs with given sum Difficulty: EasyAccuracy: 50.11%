@@ -1,0 +1,24 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/hashing-gfg-160/problem/count-pairs-with-given-sum--150253
+
+class Solution {
+  public:
+    int countPairs(vector<int> &arr, int target) {
+        // Code here
+        int ans=  0;
+        unordered_map<int,int> mm;
+        for(int x : arr)
+        {
+            if(mm[target-x])
+            {
+                ans+=mm[target-x];
+            }
+            mm[x]++;
+        }
+        return ans ;
+    }
+};
+
+Time Complexity: O(n)
+Auxiliary Space: O(n)
