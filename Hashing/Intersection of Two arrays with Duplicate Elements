@@ -1,0 +1,28 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/hashing-gfg-160/problem/intersection-of-two-arrays-with-duplicate-elements
+
+class Solution {
+  public:
+    vector<int> intersectionWithDuplicates(vector<int>& a, vector<int>& b) {
+        // code here
+        vector<int> result;
+        unordered_map<int,int> mm;
+        for(int  x  : a)
+        {
+            mm[x] =1;
+        }
+        for(int y :b)
+        {
+            if(mm[y] == 1)
+            {
+                result.push_back(y);
+            }
+            mm[y] =0;
+        }
+        return result;
+    }
+};
+
+Time Complexity: O( a.size() + b.size() )
+Auxiliary Space: O( a.size() )
