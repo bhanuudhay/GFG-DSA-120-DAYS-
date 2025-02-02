@@ -1,0 +1,35 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/two-pointer-technique-gfg-160/problem/count-possible-triangles-1587115620
+
+class Solution {
+  public:
+    // Function to count the number of possible triangles.
+    int countTriangles(vector<int>& arr) {
+        // code here
+        sort(arr.begin() ,arr.end());
+        int ans =0;
+        int n = arr.size();
+        for(int  i = n-1; i>=2 ;i--)
+        {
+            int j = 0 , k = i-1;
+            while(j<k)
+            {
+                int twoSum = arr[j]+arr[k];
+                if(twoSum > arr[i])
+                {
+                    ans += k-j;
+                    k--;
+                }
+                else
+                {
+                    j++;
+                }
+            }
+        }
+        return ans;
+    }
+};
+
+Time Complexity: O(n^2)
+Auxiliary Space: O(1)
