@@ -1,0 +1,41 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/two-pointer-technique-gfg-160/problem/pair-in-array-whose-sum-is-closest-to-x1124
+
+// User function template for C++
+class Solution {
+  public:
+    vector<int> sumClosest(vector<int>& arr, int target) {
+        // code her
+        sort(arr.begin()  ,arr.end());
+        vector<int> ans;
+        int diff = INT_MAX;
+        int  n = arr.size();
+        int l =0 , r= n-1;
+        while(l<r)
+        {
+            int sum = arr[l]+arr[r];
+            if(abs(target-sum) < diff)
+            {
+                diff = min(diff , abs(target-sum));
+                ans  = {arr[l]  ,arr[r]};
+            }
+            if(sum > target)
+            {
+                r--;
+            }
+            else  if(sum < target)
+            {
+                l++;
+            }
+            else
+            {
+                return ans;
+            }
+        }
+        return ans;
+    }
+};
+
+Time Complexity: O(n log n)
+Auxiliary Space: O(1)
