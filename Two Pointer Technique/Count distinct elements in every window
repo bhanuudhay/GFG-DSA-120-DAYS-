@@ -1,0 +1,32 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/two-pointer-technique-gfg-160/problem/count-distinct-elements-in-every-window
+
+
+class Solution {
+  public:
+    vector<int> countDistinct(vector<int> &arr, int k) {
+        // code here
+         vector<int> ans;
+        unordered_map<int,int> mm;
+        for(int i =0 ; i<k;i++)
+        {
+            mm[arr[i]]++;
+        }
+        ans.push_back(mm.size());
+        for(int  j = k ; j < arr.size();j++)
+        {
+            mm[arr[j]]++;
+            mm[arr[j-k]]--;
+            if( mm[arr[j-k]] == 0)
+            {
+                mm.erase(arr[j-k]);
+            }
+            ans.push_back(mm.size());
+        }
+        return ans;
+    }
+};
+
+Time Complexity: O(n)
+Auxiliary Space: O(n)
