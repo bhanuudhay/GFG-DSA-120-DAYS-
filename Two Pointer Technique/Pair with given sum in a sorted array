@@ -1,0 +1,56 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/two-pointer-technique-gfg-160/problem/pair-with-given-sum-in-a-sorted-array4940
+
+
+class Solution {
+  public:
+    int countPairs(vector<int> &arr, int target) {
+        // Complete the function
+        int count = 0;
+        int n =arr.size();
+        int left=0  ,right = n-1;
+        while(left<right)
+        {
+            int sum  =arr[left]+arr[right];
+            if(sum == target)
+            {
+                if(arr[left] == arr[right])
+                {
+                    int len = right-left+1 ;
+                    count += len*(len-1)/2;
+                    break;
+                }
+                int leftCount  =1;
+                while(left <right  && arr[left] == arr[left+1])
+                {
+                    leftCount++;
+                    left++;
+                }
+                int rightCount =1;
+                 while(left <right  && arr[right] == arr[right-1])
+                {
+                    rightCount++;
+                    right--;
+                }
+                
+                count+=leftCount*rightCount;
+                left++;
+                right--;
+            }
+            else if(sum > target)
+            {
+                right--;
+            }
+            else 
+            {
+                left++;
+            }
+        }
+        return count;
+    }
+    
+};
+
+Time Complexity: O(n)
+Auxiliary Space: O(1)
