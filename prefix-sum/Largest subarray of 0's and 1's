@@ -1,0 +1,28 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/prefix-sum-gfg-160/problem/largest-subarray-of-0s-and-1s
+
+class Solution {
+  public:
+    int maxLen(vector<int> &arr) {
+        // Your code here
+        for(int i =0 ;i<arr.size();i++)
+        {
+            if(arr[i] == 0) arr[i] = -1;
+        }
+        int sum =0 ,length = 0;
+        int  k =0;
+        unordered_map<int,int> mp;
+        for(int i =0;i<arr.size() ;i++)
+        {
+            sum +=arr[i];
+            if(sum == k) length = max(length , i+1);
+            if(mp.find(sum) == mp.end()) mp[sum] =i;
+            if(mp.find(sum-k) != mp.end()) length = max(length , i-mp[sum-k]);
+        }
+        return length;
+    }
+};
+
+Time Complexity: O(n)
+Auxiliary Space: O(n)
