@@ -1,0 +1,38 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/linked-list-gfg-160/problem/reverse-a-linked-list
+
+/* Linked List Node structure:
+
+struct Node
+{
+    int data;
+    struct Node *next;
+}
+
+*/
+
+class Solution {
+  public:
+    Node* reverseList(struct Node* head) {
+        // code here
+        if(head == NULL || head->next == NULL)
+        {
+            return head;
+        }
+        Node *curr = head;
+        Node *prev = NULL;
+        Node *ford = NULL;
+        while(curr!=NULL)
+        {
+            ford = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = ford;
+        }
+        return prev;
+    }
+};
+
+Time Complexity: O(n)
+Auxiliary Space: O(1)
