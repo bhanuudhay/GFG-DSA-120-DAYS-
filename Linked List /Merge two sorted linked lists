@@ -1,0 +1,49 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/linked-list-gfg-160/problem/merge-two-sorted-linked-lists
+
+/* Link list Node
+struct Node {
+  int data;
+  struct Node *next;
+
+  Node(int x) {
+    data = x;
+    next = NULL;
+  }
+};
+*/
+class Solution {
+  public:
+    Node* sortedMerge(Node* head1, Node* head2) {
+        // code here
+        Node *temp = NULL;
+        while(head1!=NULL && head2!=NULL)
+        {
+            if(head1->data < head2->data)
+            {
+                temp = insertSorted(temp ,head1->data);
+                head1 = head1->next;
+            }
+            else
+            {
+                temp = insertSorted(temp , head2->data);
+                head2 = head2->next;
+            }
+        }
+        while(head1!=NULL)
+        {
+            temp = insertSorted(temp ,head1->data);
+            head1 = head1->next;
+        }
+        while(head2!=NULL)
+        {
+            temp = insertSorted(temp , head2->data);
+            head2 = head2->next;
+        }
+        return temp;
+    }
+};
+
+Time Complexity: O(n + m)
+Auxiliary Space: O(1)
