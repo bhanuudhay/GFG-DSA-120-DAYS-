@@ -1,0 +1,105 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/linked-list-gfg-160/problem/add-two-numbers-represented-by-linked-lists
+
+/* node for linked list:
+
+struct Node {
+    int data;
+    struct Node* next;
+    Node(int x) {
+        data = x;
+        next = NULL;
+    }
+};
+
+*/
+
+class Solution {
+  public:
+    Node *rev(Node  * &head)
+    {
+        if(head == NULL || head->next == NULL)
+        {
+            return head;
+        }
+        Node *curr = head;
+        Node *prev = NULL;
+        Node *ford = NULL;
+        while(curr!=NULL)
+        {
+            ford = curr->next;
+            curr ->next = prev;
+            prev = curr;
+            curr = ford;
+        }
+        return prev;
+    }
+    
+    void insertNode(Node * &head , Node * &tail , int d)
+    {
+        Node *newNode = new Node(d);
+        if(tail == NULL)
+        {
+            head = tail = newNode;
+            return;
+        }
+        else
+        {
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
+    Node *addNum(Node * &num1 , Node * &num2)
+    {
+        Node *temp = NULL;
+        Node *tail = NULL;
+        int carry =0;
+        while(num1!=NULL || num2!=NULL || carry!=0)
+        {
+            int val1 = 0;
+            if(num1!=NULL)
+            {
+                val1 = num1->data;
+            }
+            int val2 = 0;
+            if(num2!=NULL)
+            {
+                val2 = num2->data;
+            }
+            
+            int sum = val1+val2+carry;
+            int digit = sum%10;
+            insertNode(temp ,tail , digit);
+            carry = sum/10;
+            if(num1!=NULL)
+            {
+                num1 = num1->next;
+            }
+            if(num2!=NULL)
+            {
+                num2 = num2->next;
+            }
+        }
+        return temp;
+    }
+    Node* addTwoLists(Node* num1, Node* num2) {
+        // code here
+        num1 = rev(num1);
+        num2 = rev(num2);
+        
+        Node * ans = addNum(num1,num2);
+        ans = rev(ans);
+        
+        while((ans->data) == 0 && ans->next!=NULL)
+        {
+            Node *temp = ans;
+            delete temp;
+            ans = ans ->next;
+        }
+        return ans;
+    }
+};
+
+Time Complexity: O(n + m)
+Auxiliary Space: O(max(n, m))
