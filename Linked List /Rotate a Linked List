@@ -1,0 +1,38 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/linked-list-gfg-160/problem/rotate-a-linked-list
+
+class Solution {
+  public:
+    Node* rotate(Node* head, int k) {
+        // Your code here
+        if(head==NULL || k==0)
+        {
+            return head;
+        }
+        Node *temp = head;
+        int count = 1;
+        while(temp->next!=NULL)
+        {
+            temp = temp->next;
+            count++;
+        }
+        k = k%count;
+        if(k==0)
+        {
+            return head;
+        }
+        temp->next = head;
+        temp = head;
+        for(int i =1 ; i <k ;i++)
+        {
+            temp = temp->next;
+        }
+        Node *returnHead = temp->next;
+        temp->next = NULL;
+        return returnHead;
+    }
+};
+
+me Complexity: O(n)
+Auxiliary Space: O(1)
