@@ -1,0 +1,35 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/linked-list-gfg-160/problem/reverse-a-linked-list-in-groups-of-given-size
+
+class Solution {
+  public:
+    Node *reverseKGroup(Node *head, int k) {
+        // code here
+        if(head == NULL)
+        {
+            return NULL;
+        }
+        int count = 0;
+        Node *curr = head;
+        Node *prev = NULL;
+        Node *ford = NULL;
+        while(curr!=NULL && count <k)
+        {
+            ford = curr->next;
+            curr->next = prev;
+            prev= curr;
+            curr=ford;
+            count++;
+        }
+        
+        if(ford!=NULL)
+        {
+            head->next = reverseKGroup(ford,k);
+        }
+        return prev;
+    }
+};
+
+Time Complexity: O(n)
+Auxiliary Space: O(1)
