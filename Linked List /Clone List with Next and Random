@@ -1,0 +1,75 @@
+problem link
+
+https://www.geeksforgeeks.org/batch/gfg-160-problems/track/linked-list-gfg-160/problem/clone-a-linked-list-with-next-and-random-pointer
+
+class Solution {
+  public:
+    void insertNode(Node*&head,Node*&tail,int d)
+    {
+        Node * newNode = new Node(d);
+        if(tail==NULL)
+        {
+            head = tail = newNode;
+        }
+        else
+        {
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
+    Node *cloneLinkedList(Node *head) {
+        Node *cloneHead = NULL;
+        Node *cloneTail = NULL;
+        // clone the list
+        Node *temp =head;
+        while(temp!=NULL)
+        {
+            insertNode(cloneHead,cloneTail,temp->data);
+            temp = temp->next;
+        }
+        //add node between them
+        Node *originalNode = head;
+        Node *cloneNode = cloneHead;
+        while(originalNode!=NULL && cloneNode!=NULL)
+        {
+            Node *next = originalNode->next;
+            originalNode->next = cloneNode;
+            originalNode = next;
+            
+            next = cloneNode->next;
+            cloneNode->next = originalNode;
+            cloneNode = next;
+        }
+        //copy random pointer
+        temp = head;
+        while(temp!=NULL)
+        {
+            if(temp->next!=NULL)
+            {
+                temp->next->random = temp->random ?
+                temp->random->next : temp->random;
+            }
+            temp = temp->next->next;
+        }
+        //revert 2nd 
+        
+        originalNode = head;
+        cloneNode = cloneHead;
+        
+        while(originalNode!=NULL && cloneNode!=NULL)
+        {
+            originalNode->next = cloneNode->next;
+            originalNode = originalNode->next;
+            
+            if(originalNode!=NULL)
+            {
+                cloneNode->next = originalNode->next;
+            }
+            cloneNode = cloneNode->next;
+        }
+        return cloneHead;
+    }
+};
+
+Time Complexity: O(n)
+Auxiliary Space: O(1)
