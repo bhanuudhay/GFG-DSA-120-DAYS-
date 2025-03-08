@@ -1,0 +1,66 @@
+Link : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/linked-list-gfg-160/problem/remove-loop-in-linked-list
+
+
+class Solution {
+  public:
+    // Function to remove a loop in the linked list.
+    Node *floyd(Node *&head)
+    {
+        if(head==NULL)
+        {
+            return NULL;
+        }
+        Node * slow =head;
+        Node * fast = head;
+        while(fast!=NULL && fast->next!=NULL)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+            if(slow == fast)
+            {
+                return slow;
+            }
+        }
+        return NULL;
+    }
+    Node *first(Node *&head)
+    {
+        if(head == NULL)
+        {
+            return NULL;
+        }
+        Node * intersection  = floyd(head);
+        if(intersection == NULL)
+        {
+            return NULL;
+        }
+        Node * slow = head;
+        while(slow!=intersection)
+        {
+            slow = slow->next;
+            intersection = intersection->next;
+        }
+        return slow;
+    }
+    void removeLoop(Node* head) {
+        // code here
+        if(head==NULL)
+        {
+            return;
+        }
+        Node * dec = first(head);
+        if(dec==NULL)
+        {
+            return;
+        }
+        Node *temp =dec;
+        while(temp->next!=dec)
+        {
+            temp = temp->next;
+        }
+        temp->next = NULL;
+    }
+};
+
+Time Complexity: O(n)
+Space Complexity: O(1)
