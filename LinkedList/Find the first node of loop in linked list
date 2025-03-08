@@ -1,0 +1,46 @@
+Link : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/linked-list-gfg-160/problem/find-the-first-node-of-loop-in-linked-list--170645
+
+class Solution {
+  public:
+    Node *floyd(Node * &head)
+    {
+        if(head == NULL)
+        {
+            return NULL;
+        }
+        Node *slow = head;
+        Node * fast = head;
+        while(fast!=NULL && fast->next!=NULL)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+            if(slow == fast)
+            {
+                return slow;
+            }
+        }
+        return NULL;
+    }
+    Node* findFirstNode(Node* head) {
+        // your code here
+        if(head == NULL)
+        {
+            return NULL;
+        }
+        Node * intersection = floyd(head);
+        if(intersection == NULL)
+        {
+            return NULL;
+        }
+        Node * slow = head;
+        while(slow!=intersection)
+        {
+            slow = slow->next;
+            intersection = intersection->next;
+        }
+        return slow;
+    }
+};
+
+Time Complexity: O(n)
+Space Complexity: O(1)
