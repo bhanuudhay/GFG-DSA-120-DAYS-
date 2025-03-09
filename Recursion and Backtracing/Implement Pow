@@ -1,0 +1,23 @@
+Link : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/recursion-and-backtracking-gfg-160/problem/powx-n
+
+class Solution {
+  public:
+    double solve(double x , long n)
+    {
+        if(n == 0) return 1;
+        if(n < 0) return solve(1/x,-n);
+        if(n%2 == 0) 
+        {
+            return solve(x*x , n/2);
+        }
+        else
+        {
+            return x * solve(x*x , (n-1)/2);
+        }
+    }
+    double power(double b, int e) {
+        // code here
+        return solve(b , long(e));
+    }
+};
+
