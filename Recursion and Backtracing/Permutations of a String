@@ -1,0 +1,29 @@
+Link : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/recursion-and-backtracking-gfg-160/problem/permutations-of-a-given-string2041
+
+class Solution {
+  public:
+    void solve(string &s ,unordered_set<string> &st , int indx)
+    {
+        if(indx == s.length())
+        {
+            st.insert(s);
+            return;
+        }
+        for(int i = indx ;i < s.length();i++)
+        {
+            swap(s[i],s[indx]);
+            solve(s,st,indx+1);
+            swap(s[i],s[indx]);
+        }
+    }
+    vector<string> findPermutation(string &s) {
+        // Code here there
+        unordered_set<string> st;
+        int indx = 0;
+        solve(s,st,indx);
+        vector<string> ans(st.begin(),st.end());
+        return ans;
+        
+    }
+};
+
