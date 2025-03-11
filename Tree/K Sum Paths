@@ -1,0 +1,26 @@
+Link : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/tree-gfg-160/problem/k-sum-paths
+
+class Solution {
+  public:
+    void solve(Node * &root, int k , int sum , int &count , unordered_map<int,int> &mm)
+    {
+        if(root == NULL) return;
+        sum+=root->data;
+        if(sum == k)count++;
+        if(mm.find(sum-k) != mm.end()) count+=mm[sum-k];
+        mm[sum]++;
+        solve(root->left,k,sum,count,mm);
+        solve(root->right,k,sum,count,mm);
+        mm[sum]--;
+    }
+    int sumK(Node *root, int k) {
+        // code here
+        unordered_map<int,int>mm;
+        int count  = 0;
+        solve(root,k,0,count,mm);
+        return count;
+    }
+};
+
+Time Complexity: O(N) 
+Space Complexity: O(N)
