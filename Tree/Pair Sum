@@ -1,0 +1,32 @@
+Link : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/tree-gfg-160/problem/find-a-pair-with-given-target-in-bst
+
+class Solution {
+  public:
+    void traverse(Node *&root , vector<int>&ans)
+    {
+        if(!root)
+        {
+            return;
+        }
+        traverse(root->left,ans);
+        ans.push_back(root->data);
+        traverse(root->right,ans);
+    }
+    bool findTarget(Node *root, int target) {
+        vector<int> ans;
+        traverse(root,ans);
+        unordered_map<int,int>mm;
+        for(int x: ans)
+        {
+            if(mm[target-x])
+            {
+                return true;
+            }
+            mm[x]++;
+        }
+        return false;
+    }
+};
+
+Time Complexity : O(n)
+Space Complexity : O(n)
