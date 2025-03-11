@@ -1,0 +1,19 @@
+Link : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/tree-gfg-160/problem/mirror-tree
+
+class Solution {
+  public:
+    void mirror(Node* root) {
+        if(root == NULL)
+        {
+            return;
+        }
+        mirror(root->left);
+        mirror(root->right);
+        Node* temp = root->left;
+        root->left = root->right;
+        root->right = temp;
+    }
+};
+
+Time Complexity: O(N)
+Space Complexity: O(H)
