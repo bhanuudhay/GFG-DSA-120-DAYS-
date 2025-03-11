@@ -1,0 +1,34 @@
+Link : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/tree-gfg-160/problem/find-k-th-smallest-element-in-bst
+
+class Solution {
+  public:
+    // Return the Kth smallest element in the given BST
+    void traverse(Node * &root, vector<int> &ans)
+    {
+        if(!root)
+        {
+            return;
+        }
+        traverse(root->left,ans);
+        ans.push_back(root->data);
+        traverse(root->right,ans);
+    }
+    int kthSmallest(Node *root, int k) {
+        // add code here.
+        if(root==NULL)
+        {
+            return -1;
+        }
+        vector<int> ans;
+        traverse(root,ans);
+        sort(ans.begin() , ans.end());
+        if(k > ans.size())
+        {
+            return -1;
+        }
+        return ans[k-1];
+    }
+};
+
+Time Complexity: O(N log N)
+Space Complexity: O(N)
