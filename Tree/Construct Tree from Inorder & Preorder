@@ -1,0 +1,36 @@
+Link : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/tree-gfg-160/problem/construct-tree-1
+
+
+class Solution {
+  public:
+  
+    Node *solve(vector<int> &inorder, vector<int> &preorder, int start , int end , int &indx)
+    {
+        if(start > end)
+        {
+            return NULL;
+        }
+        int rootVal = preorder[indx++];
+        int i = start;
+        for(;i<inorder.size();i++)
+        {
+            if(inorder[i] == rootVal)
+            {
+                break;
+            }
+        }
+        Node * root = new Node(rootVal);
+        root->left = solve(inorder,preorder,start,i-1, indx);
+        root->right = solve(inorder,preorder,i+1 , end,indx);
+        return root;
+    }
+    Node *buildTree(vector<int> &inorder, vector<int> &preorder) {
+        // code here
+        int n = preorder.size();
+        int indx = 0;
+        return solve(inorder,preorder,0,n-1,indx);
+    }
+};
+
+Time Complexity: O(N²) 
+Space Complexity: O(N) 
