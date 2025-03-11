@@ -1,0 +1,35 @@
+Link : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/tree-gfg-160/problem/level-order-traversal
+
+class Solution {
+  public:
+    vector<vector<int>> levelOrder(Node *root) {
+        vector<vector<int>> ans;
+        if(root == NULL) return ans;
+        queue<Node*> q;
+        q.push(root);
+        while(!q.empty())
+        {
+            int size = q.size();
+            vector<int> curr;
+            for(int i = 0 ; i < size ; i++)
+            {
+                Node * temp = q.front();
+                q.pop();
+                curr.push_back(temp->data);
+                if(temp->left)
+                {
+                    q.push(temp->left);
+                }
+                if(temp->right)
+                {
+                    q.push(temp->right);
+                }
+            }
+            ans.push_back(curr);
+        }
+        return ans;
+    }
+};
+
+Time Complexity: O(N)
+Space Complexity: O(N)
