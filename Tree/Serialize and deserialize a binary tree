@@ -1,0 +1,46 @@
+Link : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/tree-gfg-160/problem/serialize-and-deserialize-a-binary-tree
+
+class Solution {
+  public:
+    // Function to serialize a tree and return a list containing nodes of tree
+    void traverse(Node *&root, vector<int> &ans)
+    {
+        if(!root)
+        {
+            ans.push_back(-1);
+            return;
+        }
+        ans.push_back(root->data);
+        traverse(root->left,ans);
+        traverse(root->right,ans);
+    }
+    vector<int> serialize(Node *root) {
+        // Your code here
+        vector<int> ans;
+        traverse(root,ans);
+        return ans;
+    }
+
+    // Function to deserialize a list and construct the tree.
+
+    int index = 0;
+    Node *deSerialize(vector<int> &arr) {
+        // Your code her
+        if(index == arr.size())
+        {
+            return NULL;
+        }
+        int val = arr[index++];
+        if(val == -1)
+        {
+            return NULL;
+        }
+        Node * root = new Node(val);
+        root->left =  deSerialize(arr);
+        root->right = deSerialize(arr);
+        return root;
+    }
+};
+
+Time Complexity: O(N)
+Space Complexity: O(N)
