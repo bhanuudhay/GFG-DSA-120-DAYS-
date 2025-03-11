@@ -1,0 +1,48 @@
+Link : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/tree-gfg-160/problem/maximum-path-sum-from-any-node
+
+
+// User Fuction template for C++
+/*
+// Tree Node
+class Node {
+public:
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+class Solution {
+  public:
+    int maxi;
+    // Function to return maximum path sum from any node in a tree.
+    int solve(Node * &root)
+    {
+        if(root == NULL)
+        {
+            return 0 ;
+        }
+        int l = solve(root->left);
+        int r = solve(root->right);
+        
+        int upar = max(l,r) + root->data;
+        int single = root->data;
+        int niche = l + r + root->data;
+        
+        maxi = max({maxi,upar,niche,single});
+        return max(upar,single);
+    }
+    int findMaxSum(Node *root) {
+        // code here
+        maxi = INT_MIN;
+        solve(root);
+        return maxi;
+    }
+};
+
+Time Complexity: O(N) 
+Space Complexity: O(N)
