@@ -1,0 +1,16 @@
+Link : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/tree-gfg-160/problem/height-of-binary-tree
+
+class Solution {
+  public:
+    int height(Node* node) {
+        // code here
+        if(node == NULL)
+        {
+            return -1;
+        }
+        return max(height(node->left) , height(node->right)) + 1;
+    }
+};
+
+Time Complexity: O(N)
+Space Complexity: O(H)
