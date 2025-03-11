@@ -1,0 +1,22 @@
+Link : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/tree-gfg-160/problem/lowest-common-ancestor-in-a-bst
+
+class Solution {
+  public:
+    Node* LCA(Node* root, Node* n1, Node* n2) {
+        // code here
+        if(root == NULL) return NULL;
+        int curr = root->data;
+        if(curr > n1->data && curr > n2->data)
+        {
+            return LCA(root->left,n1,n2);
+        }
+        if(curr <  n1->data && curr < n2->data )
+        {
+            return LCA(root->right,n1,n2);
+        }
+        return root;
+    }
+};
+
+Time Complexity: O(H)
+Space Complexity: O(H)
