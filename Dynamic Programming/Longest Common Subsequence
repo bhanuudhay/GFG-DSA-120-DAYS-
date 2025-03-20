@@ -1,0 +1,43 @@
+link : https://www.geeksforgeeks.org/batch/gfg-160-problems/track/dynamic-programming-gfg-160/problem/longest-common-subsequence-1587115620
+
+
+class Solution {
+  public:
+    int t[1001][1001];
+    int LCS(string &s1, string &s2, int n , int m)
+    {
+        for(int i = 0 ;i<=n ;i++)
+        {
+            for(int j = 0;j<=m;j++)
+            {
+                if(i == 0 || j == 0)
+                {
+                    t[i][j] = 0;
+                }
+            }
+        }
+        for(int i = 1; i<=n ;i++)
+        {
+            for(int  j = 1 ;j<=m ;j++)
+            {
+                if(s1[i-1] == s2[j-1])
+                {
+                    t[i][j] = 1 + t[i-1][j-1];
+                }
+                else 
+                {
+                    t[i][j] = max(t[i][j-1] , t[i-1][j]);
+                }
+            }
+        }
+        return t[n][m];
+    }
+    int lcs(string &s1, string &s2) {
+        // code here
+        int n =  s1.length();
+        int m =  s2.length();
+        int ans =  LCS(s1,s2,n,m);
+        return ans;
+    }
+};
+
